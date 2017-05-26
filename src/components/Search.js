@@ -3,8 +3,6 @@
  */
 import React,{Component} from 'react';
 
-
-
 class SearchBox extends Component {
     constructor (props){
         super(props);
@@ -16,11 +14,14 @@ class SearchBox extends Component {
     searchHandler(ev){
         this.setState({term: ev.target.value})
     }
+
     render (){
         return (
-            <form>
-                <input type="text" onChange={this.searchHandler} value={this.term}/>
-            </form>
+            <div className="SearchBox">
+                <form>
+                    <input className="form-control form-control-lg" placeholder="Search" type="text" onChange={this.searchHandler} value={this.term}/>
+                </form>
+            </div>
         )
     }
 }
