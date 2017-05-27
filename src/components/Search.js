@@ -14,11 +14,13 @@ class SearchBox extends Component {
         console.log('the event ..');
         this.setState({term: ev.target.value});
         console.log('after setstate');
-        alert('The new value of input is:' + this.state.term);
+        console.log('this term new value is',  this.state.term);
+        return this.state.term;
+
+        // alert('The new value of input is:' + this.state.term);
 
     }
     render (){
-        console.log('I was triggered during render');
         return (
             <div className="SearchBox">
                 <form>
