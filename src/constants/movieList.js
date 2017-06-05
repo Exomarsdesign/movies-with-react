@@ -65,7 +65,6 @@ export const movies = [
         directors:"Jericca Cleland"
     },
     {
-        id:11,
         name:"Absolutely Anything",
         year:2017,
         date:"May 12",
