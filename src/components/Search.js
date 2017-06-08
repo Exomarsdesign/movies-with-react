@@ -2,34 +2,38 @@
  * Created by Mirela Bumb on 5/26/2017.
  */
 import React,{Component} from 'react';
+import {moviesAll} from  '../constants/movieList.js';
+import App from '../App.js';
 import '../search.css';
 
 class SearchBox extends Component {
     constructor (props){
         super(props);
-        this.state = {term:''};
-        this.searchHandler = this.searchHandler.bind(this);
+        this.state = {
+            movies: moviesAll
+        };
+        this.filteredList = this.filteredList.bind(this);
     }
-    searchHandler(ev){
-        console.log('the event ..');
-        this.setState({term: ev.target.value});
-        console.log('after setstate');
-        console.log('this term new value is',  this.state.term);
-        return this.state.term;
 
-        // alert('The new value of input is:' + this.state.term);
-
+    filteredList(event) {
+        let updatedList = this.state.movies;
+        updatedList = updatedList.filter(function(item) {
+            return item.name.toLowerCase().search(
+                    event.target.value.toLowerCase()) !== -1;
+        });
+        this.setState({movies:updatedList});
     }
+
     render (){
         return (
             <div className="SearchBox">
                 <form>
                     <label>Looking for a specific movie?</label>
-                    <input className="form-control form-control-lg" placeholder="Search" type="text" onChange={this.searchHandler} value={this.state.term} />
+                    <input type="text" className="form-control form-control-lg" placeholder="Search" onChange={this.filteredList} />
                 </form>
+               <App moviesAll={this.state.movies}/>
             </div>
         )
-
     }
 }
 export default SearchBox;
