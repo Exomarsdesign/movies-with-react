@@ -3,7 +3,7 @@
  */
 import React from 'react';
 
-export const movies = [
+export const moviesAll = [
     {
         name:"The Forest",
         year:2016,
