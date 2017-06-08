@@ -1,37 +1,23 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
+import {moviesAll} from  './constants/movieList.js';
+import SearchBox from "./components/Search";
 import './App.css';
-import {movies} from  './constants/movieList.js';
-import SearchBox from './components/Search.js';
-
-console.log('return form searchBox', SearchBox);
-
-function searchingFor (term) {
-    return function (y) {
-        console.log('this is y', y);
-        return !(!y.name.toLowerCase().includes(term.toLowerCase()) && term);
-    }
-}
 
 class App extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
-            movies: movies,
-            term: ''
+            moviesAll: moviesAll
         };
     }
+
     render() {
-        console.log('I was triggered during app render');
-        const {term,movies} = this.state;
-        console.log('the state before search',this.state);
-        console.log('the movies is',movies);
-        console.log('the term is', term+'is empty?');
         return (
             <div className="container">
-                <SearchBox />
+                <SearchBox/>
                 {
-                    movies.filter(searchingFor(term)).map(movie =>
-                        <div key={movie.id} className="movies">
+                    this.state.moviesAll.map((movie, index) =>
+                        <div key={index} className="movies">
                             <div className="col-md-6">
                                 <h1 className="well">{movie.name}</h1>
                                 <ul className="list-group">
